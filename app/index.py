@@ -26,6 +26,7 @@ def ans():
         if student.isdigit():
             studentinfo = get_student(student)
             if studentinfo is not None:
+                # 加入session
                 session['user'] = studentinfo['gradelist']
                 return render_template(
                     'ans.html',
