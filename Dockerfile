@@ -6,7 +6,7 @@ RUN mkdir /cjcx
 WORKDIR /cjcx
 COPY . /cjcx
 
-RUN pip install -r /cjcx/requirenments.txt
+RUN pip install -r requirements.txt
 
 CMD ["python","/cjcx/manage.py"]
 
