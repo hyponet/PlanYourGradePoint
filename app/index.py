@@ -40,7 +40,7 @@ def ans():
 @app.route('/update', methods=['POST'])
 def update():
     if request.method == 'POST':
-        student = request.form['no']
+        # student = request.form['no']
         gradelist = copy.deepcopy(session['user'])
         len = 1
         for grade in gradelist['gradelist']:
@@ -50,7 +50,7 @@ def update():
         gradelist = computer(gradelist)
         return render_template(
             'ans.html',
-            info=session[student],
+            info=session['user'],
             point=gradelist
         )
 
