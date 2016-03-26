@@ -8,9 +8,17 @@ COPY . /cjcx
 
 RUN apt-get update
 RUN apt-get upgrade -y
+RUN apt-get install nginx -y
+RUN apt-get install uwsgi uwsgi-plugin-python -y
+RUN chown -R www-data:www-data /cjcx
+RUN chown -R www-data:www-data /cjcx
+ADD /cjcx/default /etc/nginx/sites-available/
+
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 
-CMD ["python","/cjcx/manage.py"]
+RUN /etc/init.d/nginx restart
 
-EXPOSE 5000
+CMD ["uwsgi","--ini","/cjcx/manage_config.ini"]
+
+EXPOSE 80
