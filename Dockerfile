@@ -20,6 +20,6 @@ RUN pip install -r requirements.txt
 RUN /etc/init.d/nginx restart
 RUN ln -s /usr/lib/python2.7/plat-*/_sysconfigdata_nd.py /usr/lib/python2.7/
 
-CMD uwsgi --ini /cjcx/manage_config.ini
+CMD sh startserver.sh
 
 EXPOSE 80
