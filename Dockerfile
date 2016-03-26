@@ -10,11 +10,6 @@ RUN apt-get update
 RUN apt-get upgrade -y
 RUN apt-get install nginx -y
 RUN apt-get install uwsgi uwsgi-plugin-python -y
-RUN apt-get install virtualenvwrapper -y
-RUN export WORKON_HOME=/root/.virtualenvs
-RUN sh /usr/local/bin/virtualenvwrapper.sh
-RUN mkvirtualenv cjcx
-RUN workon cjcx
 RUN chown -R www-data:www-data /cjcx
 RUN chown -R www-data:www-data /cjcx
 ADD default /etc/nginx/sites-available/default
