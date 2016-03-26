@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="不要跟我学扳着手指考试，Just for fun。">
+    <meta name="author" content="Hypo">
+
+    <title>山东理工大学绩点查询估算</title>
+
+    <link href="{{url_for('static', filename='bootstrap.min.css')}}" rel="stylesheet">
+    <link href="{{url_for('static', filename='home.css')}}" rel="stylesheet">
+</head>
+
+<body>
+
+<div class="container">
+    <div class="header clearfix">
+        <nav>
+            <ul class="nav nav-pills pull-right">
+                <li role="presentation"><a target="_black" href="https://github.com/Coderhypo/PlanYourGradePoint">GitHub</a></li>
+            </ul>
+        </nav>
+        <h3 class="text-muted">山东理工大学</h3>
+    </div>
+
+    <div class="jumbotron">
+        <label>{{info['info']['name']}} | {{info['info']['class']}}</label>
+        <h2>目前绩点：<b>{{ point['point'] }}</b></h2>
+        <p>已修总绩点: {{ point['sumgrade'] }} | 总学分: {{ point['sumpoint'] }}</p>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <form id="update" method="POST" action="/update">
+                <table class="table table-striped table-bordered table-hover">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>学年</th>
+                        <th>学期</th>
+                        <th>类别</th>
+                        <th>课程名称</th>
+                        <th>学分</th>
+                        <th>原成绩</th>
+                        <th>预计重修成绩</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for grade in info['gradelist'] %}
+                    <tr>
+                        <th scope="row">{{grade['id']}}</th>
+                        <td>{{grade['schoolyear']}}</td>
+                        <td>{{grade['semester']}}</td>
+                        <td>{{grade['class']}}</td>
+                        <td>{{grade['name']}}</td>
+                        <td>{{grade['point']}}</td>
+                        <td>{{grade['grade']}}</td>
+                        <td><input type="text" class="form-control" name="c{{grade['id']}}" value="{{point[grade['name']]}}"  placeholder="{{grade['grade']}}"></td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+                <button type="submit" class="btn btn-info btn-sm">重新计算</button>
+            </form>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; OpenSDUT 2016 作者就是个学渣 没脸见人了</p>
+    </footer>
+
+</div> <!-- /container -->
+
+</body>
+</html>

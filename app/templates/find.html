@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="不要跟我学扳着手指考试，Just for fun。">
+    <meta name="author" content="Hypo">
+
+    <title>山东理工大学绩点查询估算</title>
+
+    <link href="{{url_for('static', filename='bootstrap.min.css')}}" rel="stylesheet">
+    <link href="{{url_for('static', filename='home.css')}}" rel="stylesheet">
+</head>
+
+<body>
+
+<div class="container">
+    <div class="header clearfix">
+        <nav>
+            <ul class="nav nav-pills pull-right">
+                <li role="presentation"><a target="_blank" href="https://github.com/Coderhypo/PlanYourGradePoint">GitHub</a></li>
+            </ul>
+        </nav>
+        <h3 class="text-muted">山东理工大学</h3>
+    </div>
+
+    <div class="jumbotron">
+        <h2>绩点计算查询</h2>
+        <form action="/list" method="POST">
+            <div class="form-group">
+                <label>请输入学号</label>
+                <input type="text" class="form-control" name="no" placeholder="学号">
+            </div>
+            <button type="submit" class="btn btn-success">开始计算</button>
+            <a class="btn btn-link" target="_blank" href="http://210.44.176.116/cjcx/main.html">计算方法</a>
+        </form>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; OpenSDUT 2016 作者就是个学渣 没脸见人了</p>
+    </footer>
+
+</div> <!-- /container -->
+
+</body>
+</html>
