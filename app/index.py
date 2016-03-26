@@ -26,7 +26,7 @@ def ans():
         if student.isdigit():
             studentinfo = get_student(student)
             if studentinfo is not None:
-                session[student] = studentinfo['gradelist']
+                session['user'] = studentinfo['gradelist']
                 return render_template(
                     'ans.html',
                     info=studentinfo['gradelist'],
@@ -40,7 +40,7 @@ def ans():
 def update():
     if request.method == 'POST':
         student = request.form['no']
-        gradelist = copy.deepcopy(session[student])
+        gradelist = copy.deepcopy(session['user'])
         len = 1
         for grade in gradelist['gradelist']:
             grade['grade'] = request.form['c' + str(len)]

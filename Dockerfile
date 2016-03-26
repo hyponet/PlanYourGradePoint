@@ -6,6 +6,9 @@ RUN mkdir /cjcx
 WORKDIR /cjcx
 COPY . /cjcx
 
+RUN apt-get update
+RUN apt-get upgrade
+RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 
 CMD ["python","/cjcx/manage.py"]
