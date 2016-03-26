@@ -12,7 +12,7 @@ RUN apt-get install nginx -y
 RUN apt-get install uwsgi uwsgi-plugin-python -y
 RUN chown -R www-data:www-data /cjcx
 RUN chown -R www-data:www-data /cjcx
-ADD /cjcx/default /etc/nginx/sites-available/
+ADD default /etc/nginx/sites-available/default
 
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
