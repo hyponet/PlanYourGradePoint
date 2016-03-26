@@ -3,8 +3,10 @@
 
 from app import app
 from flask import render_template
-from flask import request
-from .computer import get_student
+from flask import request, session
+import copy
+
+from .computer import get_student, computer
 
 @app.route('/')
 def index():
@@ -24,11 +26,31 @@ def ans():
         if student.isdigit():
             studentinfo = get_student(student)
             if studentinfo is not None:
-                return render_template('ans.html', info=studentinfo['gradelist'], point=studentinfo['pointinfo'])
+                session[student] = studentinfo['gradelist']
+                return render_template(
+                    'ans.html',
+                    info=studentinfo['gradelist'],
+                    point=studentinfo['pointinfo']
+                )
 
     return render_template('find.html')
 
 
 @app.route('/update', methods=['POST'])
 def update():
-    return render_template('ans.html')
+    if request.method == 'POST':
+        student = request.form['no']
+        gradelist = copy.deepcopy(session[student])
+        len = 1
+        for grade in gradelist['gradelist']:
+            grade['grade'] = request.form['c' + str(len)]
+            len += 1
+
+        gradelist = computer(gradelist)
+        return render_template(
+            'ans.html',
+            info=session[student],
+            point=gradelist
+        )
+
+    return render_template('find.html')

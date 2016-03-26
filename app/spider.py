@@ -14,6 +14,7 @@ def get_grade_list(studentno):
     # 获得学生信息
     try:
         info = {
+            'no': studentno,
             'name': soup.body.table.find_all('table')[0].find_all('tr')[1].find_all('td')[1].text,
             'class': soup.body.table.find_all('table')[0].find_all('tr')[1].find_all('td')[6].text
         }
@@ -27,6 +28,12 @@ def get_grade_list(studentno):
         if len == 0:
             len += 1
             continue
+
+        # 跳过双专业
+        way = grade.find_all('td')[8].text.strip()
+        if way.isalpha():
+            continue
+
         tmp = {
             'id': grade.find_all('td')[0].text.strip(),
             'schoolyear': grade.find_all('td')[1].text.strip(),
