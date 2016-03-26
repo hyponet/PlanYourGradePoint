@@ -12,7 +12,7 @@ RUN apt-get install nginx -y
 RUN apt-get install uwsgi uwsgi-plugin-python -y
 RUN apt-get install virtualenvwrapper -y
 RUN export WORKON_HOME=/root/.virtualenvs
-RUN source /usr/local/bin/virtualenvwrapper.sh
+RUN sh /usr/local/bin/virtualenvwrapper.sh
 RUN mkvirtualenv cjcx
 RUN workon cjcx
 RUN chown -R www-data:www-data /cjcx
