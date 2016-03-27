@@ -50,7 +50,8 @@ def get_grade_list(studentno):
 
         gradelist.append(tmp)
 
-        print "[Student] No:" + info['no'] + " Name:" + info['name'] + " Class:" + info['class']  
+    print "[Student] No:" + info['no'] + " Name:" + info['name'] + " Class:" + info['class']  
+
     return {
         'info': info,
         'gradelist': gradelist
