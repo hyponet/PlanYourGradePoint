@@ -18,6 +18,7 @@ def get_grade_list(studentno):
             'name': soup.body.table.find_all('table')[0].find_all('tr')[1].find_all('td')[1].text,
             'class': soup.body.table.find_all('table')[0].find_all('tr')[1].find_all('td')[6].text
         }
+        print "[find]: Student:" + info['no'] + " Name:" + info['name'] + " Class:" + info['class']  
     except:
         return None
 
