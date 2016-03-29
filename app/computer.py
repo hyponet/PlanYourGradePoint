@@ -34,8 +34,9 @@ def computer(gradelist):
                 sumpoint += pointtmp
                 pointinfo[g['name']] = gradetmp
             else:
-                sumgrade -= pointinfo[g['name']] * pointtmp
-                pointinfo[g['name']] = gradetmp
+                if gradetmp > pointinfo[g['name']]:
+                    sumgrade -= pointinfo[g['name']] * pointtmp
+                    pointinfo[g['name']] = gradetmp
 
     pointinfo['sumgrade'] = sumgrade
     pointinfo['sumpoint'] = sumpoint
