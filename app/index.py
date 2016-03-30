@@ -4,6 +4,7 @@
 from app import app
 from flask import render_template
 from flask import request, session
+import json
 import copy
 
 from .computer import get_student, computer
@@ -55,3 +56,16 @@ def update():
         )
 
     return render_template('find.html')
+
+
+@app.route('/api', methods=['POST'])
+def api():
+    if request.method == 'POST':
+        student = request.form['no']
+        if student.isdigit():
+            studentinfo = get_student(student)
+            if studentinfo is not None:
+                return json.dumps({
+                    'point': studentinfo['pointinfo']['point'],
+                    })
+
